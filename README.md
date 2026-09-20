@@ -96,12 +96,11 @@ Leave the extracted `waterlooworks-job-exporter-main` folder in Downloads.
 ### 3. Start the Exporter
 
 1. Open **Terminal**.
-2. Copy and paste both lines below into Terminal.
+2. Copy and paste the command below into Terminal.
 3. Press **Return**.
 
 ```bash
-cd "$HOME/Downloads/waterlooworks-job-exporter-main"
-python3 run.py
+python3 -c 'from pathlib import Path; import runpy; p=max((x for x in (Path.home()/"Downloads").rglob("run.py") if "waterlooworks-job-exporter" in str(x)), key=lambda x:x.stat().st_mtime); runpy.run_path(str(p), run_name="__main__")'
 ```
 
 The first time you run the exporter, it will automatically install the extra files it needs. The browser may take a few seconds to open, so keep Terminal open and wait for it to appear.
@@ -128,11 +127,10 @@ The exporter also creates `waterlooworks_jobs.csv` if you want to view the jobs 
 ## Using It Again
 
 1. Open **Terminal**.
-2. Copy and paste both lines below, then press **Return**:
+2. Copy and paste the same command below, then press **Return**:
 
 ```bash
-cd "$HOME/Downloads/waterlooworks-job-exporter-main"
-python3 run.py
+python3 -c 'from pathlib import Path; import runpy; p=max((x for x in (Path.home()/"Downloads").rglob("run.py") if "waterlooworks-job-exporter" in str(x)), key=lambda x:x.stat().st_mtime); runpy.run_path(str(p), run_name="__main__")'
 ```
 
 3. Choose your WaterlooWorks jobs the same way as before, then go back to Terminal and press **Return** to export them.
