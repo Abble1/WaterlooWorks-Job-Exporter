@@ -29,10 +29,9 @@ If you already have Python installed, skip this step.
 
 1. Click **Code → Download ZIP** on this GitHub page.
 2. Open your **Downloads** folder.
-3. Right-click `waterlooworks-job-exporter-main.zip`.
-4. Click **Extract All → Extract**.
-
-Leave the extracted `waterlooworks-job-exporter-main` folder in Downloads.
+3. Double-click `waterlooworks-job-exporter-main.zip` to open it.
+4. Inside the ZIP, you will see a folder named `waterlooworks-job-exporter-main`. Drag that folder into your **Downloads** folder.
+5. Open the folder you just moved and make sure you can see `run.py` inside it.
 
 ### 3. Start the Exporter
 
@@ -156,6 +155,6 @@ See [SECURITY.md](SECURITY.md) for more details.
 
 **`py` or `python3` is not recognized:** Install Python using the link above, reopen PowerShell or Terminal, and try again.
 
-**The folder cannot be found:** Make sure the ZIP was extracted and `waterlooworks-job-exporter-main` is still in your Downloads folder.
+**The folder cannot be found or `run.py` is missing:** Open `waterlooworks-job-exporter-main` in Downloads and make sure `run.py` is directly inside it. If you see another folder with the same name inside, open that inner folder instead.
 
 **The exporter cannot find the jobs:** Make sure the WaterlooWorks results are showing in **Table Mode** before pressing Enter/Return.
