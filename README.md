@@ -30,16 +30,15 @@ If you already have Python installed, skip this step.
 1. Click **Code → Download ZIP** on this GitHub page.
 2. Open your **Downloads** folder.
 3. Right-click `waterlooworks-job-exporter-main.zip` and click **Extract All... → Extract**.
-4. Open the extracted folder and open the folder containing `run.py`.
 
 ### 3. Start the Exporter
 
-1. In the folder containing `run.py`, click the **File Explorer address bar** at the top.
-2. Type `powershell` and press **Enter**. PowerShell will open directly in that folder.
-3. Copy and paste the line below, then press **Enter**.
+1. Search **Windows PowerShell** and open it.
+2. Copy and paste the command below into PowerShell.
+3. Press **Enter**.
 
 ```powershell
-py run.py
+Get-ChildItem "$HOME\Downloads" -Recurse -Filter run.py | Where-Object { $_.FullName -like "*waterlooworks-job-exporter*" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | ForEach-Object { py "$($_.FullName)" }
 ```
 
 The first time you run the exporter, it will automatically install the extra files it needs. The browser may take a few seconds to open, so keep PowerShell open and wait for it to appear.
@@ -65,10 +64,14 @@ The exporter also creates `waterlooworks_jobs.csv` if you want to view the jobs 
 
 ## Using It Again
 
-1. Open the folder containing `run.py`.
-2. Click the File Explorer address bar, type `powershell`, and press **Enter**.
-3. Copy and paste `py run.py`, then press **Enter**.
-4. Choose your WaterlooWorks jobs the same way as before, then go back to PowerShell and press **Enter** to export them.
+1. Search **Windows PowerShell** and open it.
+2. Copy and paste the same command below, then press **Enter**:
+
+```powershell
+Get-ChildItem "$HOME\Downloads" -Recurse -Filter run.py | Where-Object { $_.FullName -like "*waterlooworks-job-exporter*" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | ForEach-Object { py "$($_.FullName)" }
+```
+
+3. Choose your WaterlooWorks jobs the same way as before, then go back to PowerShell and press **Enter** to export them.
 
 ---
 
@@ -148,6 +151,6 @@ See [SECURITY.md](SECURITY.md) for more details.
 
 **`py` or `python3` is not recognized:** Install Python using the link above, reopen PowerShell or Terminal, and try again.
 
-**`run.py` is not visible:** Open the extracted folder and keep opening the project folder until you can see `run.py`. Then start PowerShell from that folder using the address bar as shown above.
+**The exporter does not start on Windows:** Make sure the ZIP was extracted somewhere inside your **Downloads** folder, then copy and paste the Windows command again.
 
 **The exporter cannot find the jobs:** Make sure the WaterlooWorks results are showing in **Table Mode** before pressing Enter/Return.
