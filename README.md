@@ -2,7 +2,7 @@
 
 WaterlooWorks Job Exporter saves the jobs from your current WaterlooWorks results page as JSON and CSV files.
 
-You can upload the JSON file to an LLM such as ChatGPT, Claude, Gemini, or another model that supports file uploads to help compare jobs, find the best matches for your resume, or sort through a large number of postings.
+You can upload the JSON file to an LLM such as ChatGPT, Claude, Gemini, or another model that supports file uploads to help compare jobs, identify your strongest matches, or sort through a large number of postings.
 
 > Unofficial student-built project. Not affiliated with or endorsed by the University of Waterloo.
 
