@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Browser/session/auth data
+playwright/.auth/
+.auth/
+auth.json
+storage_state.json
+*storage-state*.json
+*storage_state*.json
+*.cookies.json
+cookies.json
+.waterlooworks-playwright-profile/
+waterlooworks-playwright-profile/
+chrome-profile/
+browser-profile/
+
+# Exported WaterlooWorks data
+exports/
+waterlooworks_job_exporter_exports/
+waterlooworks_export/
+waterlooworks_jobs*.json
+waterlooworks_jobs*.csv
+*_checkpoint.json
+
+# Logs / temp files
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Local launcher/setup artifacts
+*.zip
+
+# Local launcher setup
