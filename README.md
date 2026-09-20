@@ -49,10 +49,10 @@ The first time you run the exporter, it will automatically install the extra fil
 
 ### 4. Choose Your Jobs
 
-1. Log into **WaterlooWorks**.
+1. A browser window should open automatically. In that browser, log into **WaterlooWorks**.
 2. Open **Co-op Jobs**.
 3. Choose **Full-Cycle Service** or **Employer Student Direct**.
-4. Apply the filters you want, or open a saved filter/search.
+4. Apply the filters you want, or open a saved filter.
 5. Make sure the jobs are showing in **Table Mode**.
 6. Go back to PowerShell and press **Enter**.
 
@@ -113,10 +113,10 @@ The first time you run the exporter, it will automatically install the extra fil
 
 ### 4. Choose Your Jobs
 
-1. Log into **WaterlooWorks**.
+1. A browser window should open automatically. In that browser, log into **WaterlooWorks**.
 2. Open **Co-op Jobs**.
 3. Choose **Full-Cycle Service** or **Employer Student Direct**.
-4. Apply the filters you want, or open a saved filter/search.
+4. Apply the filters you want, or open a saved filter.
 5. Make sure the jobs are showing in **Table Mode**.
 6. Go back to Terminal and press **Return**.
 
