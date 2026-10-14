@@ -1,154 +1,67 @@
 # WaterlooWorks Job Exporter
 
-WaterlooWorks Job Exporter saves the jobs from your current WaterlooWorks results page as JSON and CSV files.
-
-You can upload the JSON file to an LLM such as ChatGPT or Gemini to compare postings against your resume, identify your strongest matches, and focus on the roles actually worth applying to.
+Export the jobs in a filtered WaterlooWorks results table to structured JSON and CSV. Use the files to review postings in a spreadsheet or, optionally, compare them with your resume using an LLM and build a focused application shortlist.
 
 > Unofficial student-built project. Not affiliated with or endorsed by the University of Waterloo.
 
-## Get Started
+## What it does
 
-Choose your computer:
+- Opens a temporary Chromium browser so you can sign in to WaterlooWorks and choose your own search and filters.
+- Exports the visible result set across pages, including posting details such as role, employer, location, term, deadline, skills, responsibilities, and application requirements.
+- Saves \`waterlooworks_jobs.json\` and \`waterlooworks_jobs.csv\` in the project's \`exports/\` folder.
+- Supports an optional resume-matching workflow: give an LLM the JSON and your resume, then ask it to rank suitable roles and explain the fit. You decide which roles to apply to.
 
-- [Windows](#windows)
-- [Mac](#mac)
+The exporter uses WaterlooWorks' in-page posting functions rather than hard-coded action tokens. Its launcher creates a project-local Python environment, installs the pinned dependency and Chromium on first run, and reuses that setup afterward. Exports are checkpointed as the scan proceeds.
 
----
+## Setup
 
-# Windows
+You need Python and an internet connection for the first-run dependency and browser installation. The commands below find the latest extracted project folder under **Downloads**, so they do not depend on a specific Windows username or folder path.
 
-## First Time
+### Windows
 
-### 1. Install Python
+1. Install [Python](https://www.python.org/downloads/) if needed.
+2. On this GitHub page, select **Code → Download ZIP**. In Downloads, right-click the ZIP and select **Extract All... → Extract**.
+3. Open **Windows PowerShell**, paste this command, and press **Enter**:
 
-If you already have Python installed, skip this step.
-
-[Download Python](https://www.python.org/downloads/)
-
-### 2. Download the Exporter
-
-1. Click **Code → Download ZIP** on this GitHub page.
-2. Open your **Downloads** folder.
-3. Right-click `waterlooworks-job-exporter-main.zip` and click **Extract All... → Extract**.
-
-### 3. Start the Exporter
-
-1. Search **Windows PowerShell** and open it.
-2. Copy and paste the command below into PowerShell.
-3. Press **Enter**.
-
-```powershell
+\`\`\`powershell
 Get-ChildItem "$HOME\Downloads" -Recurse -Filter run.py | Where-Object { $_.FullName -like "*waterlooworks-job-exporter*" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | ForEach-Object { py "$($_.FullName)" }
-```
+\`\`\`
 
-The first time you run the exporter, it will automatically install the extra files it needs. The browser may take a few seconds to open, so keep PowerShell open and wait for it to appear.
+### Mac
 
-### 4. Choose Your Jobs
+1. Install [Python](https://www.python.org/downloads/) if needed.
+2. On this GitHub page, select **Code → Download ZIP**. Double-click the ZIP in Downloads to extract it, and leave the extracted folder there.
+3. Open **Terminal**, paste this command, and press **Return**:
 
-1. A browser window should open automatically. In that browser, log into **WaterlooWorks**.
-2. Open **Co-op Jobs**.
-3. Choose **Full-Cycle Service** or **Employer Student Direct**.
-4. Apply the filters you want, or open a saved filter.
-5. Make sure the jobs are showing in **Table Mode**.
-6. Go back to PowerShell and press **Enter**.
-
-The exporter will go through the jobs currently shown in your results. When it finishes, File Explorer will open with `waterlooworks_jobs.json` selected.
-
-You can now upload `waterlooworks_jobs.json` to any LLM that supports file uploads. Tell it what kinds of jobs you are looking for, give it any requirements you care about, or attach your resume and ask it to find the best matches for you.
-
-For example:
-
-> I attached my resume and my WaterlooWorks jobs. Find the jobs that fit me best. Prioritize software roles, 4-month positions, and jobs that match my current experience. Explain why each one is a good fit.
-
-The exporter also creates `waterlooworks_jobs.csv` if you want to view the jobs in Excel or another spreadsheet app.
-
-## Using It Again
-
-1. Search **Windows PowerShell** and open it.
-2. Copy and paste the same command below, then press **Enter**:
-
-```powershell
-Get-ChildItem "$HOME\Downloads" -Recurse -Filter run.py | Where-Object { $_.FullName -like "*waterlooworks-job-exporter*" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | ForEach-Object { py "$($_.FullName)" }
-```
-
-3. Choose your WaterlooWorks jobs the same way as before, then go back to PowerShell and press **Enter** to export them.
-
----
-
-# Mac
-
-## First Time
-
-### 1. Install Python
-
-If you already have Python installed, skip this step.
-
-[Download Python](https://www.python.org/downloads/)
-
-### 2. Download the Exporter
-
-1. Click **Code → Download ZIP** on this GitHub page.
-2. Open your **Downloads** folder.
-3. Double-click `waterlooworks-job-exporter-main.zip` to extract it.
-
-Leave the extracted `waterlooworks-job-exporter-main` folder in Downloads.
-
-### 3. Start the Exporter
-
-1. Open **Terminal**.
-2. Copy and paste the command below into Terminal.
-3. Press **Return**.
-
-```bash
+\`\`\`bash
 python3 -c 'from pathlib import Path; import runpy; p=max((x for x in (Path.home()/"Downloads").rglob("run.py") if "waterlooworks-job-exporter" in str(x)), key=lambda x:x.stat().st_mtime); runpy.run_path(str(p), run_name="__main__")'
-```
+\`\`\`
 
-The first time you run the exporter, it will automatically install the extra files it needs. The browser may take a few seconds to open, so keep Terminal open and wait for it to appear.
+### Export jobs
 
-### 4. Choose Your Jobs
+On either system:
 
-1. A browser window should open automatically. In that browser, log into **WaterlooWorks**.
-2. Open **Co-op Jobs**.
-3. Choose **Full-Cycle Service** or **Employer Student Direct**.
-4. Apply the filters you want, or open a saved filter.
-5. Make sure the jobs are showing in **Table Mode**.
-6. Go back to Terminal and press **Return**.
+1. Wait for the browser to open, then sign in to WaterlooWorks in that browser.
+2. Open **Co-op Jobs** and choose **Full-Cycle Service** or **Employer Student Direct**.
+3. Apply filters or open a saved search. Switch the results to **Table Mode** and wait for the job rows to load.
+4. Return to PowerShell or Terminal and press **Enter** (Windows) or **Return** (Mac).
+5. When the export finishes, open \`exports/waterlooworks_jobs.json\` or \`exports/waterlooworks_jobs.csv\`.
 
-The exporter will go through the jobs currently shown in your results. When it finishes, Finder will open with `waterlooworks_jobs.json` selected.
+The same command can be used for later exports. Keep the extracted project folder in Downloads.
 
-You can now upload `waterlooworks_jobs.json` to any LLM that supports file uploads. Tell it what kinds of jobs you are looking for, give it any requirements you care about, or attach your resume and ask it to find the best matches for you.
+## Privacy
 
-For example:
+Login takes place directly in the temporary browser. The exporter does not ask for or store your WaterlooWorks username, email, password, or Duo code. When it closes, the browser session is discarded.
 
-> I attached my resume and my WaterlooWorks jobs. Find the jobs that fit me best. Prioritize software roles, 4-month positions, and jobs that match my current experience. Explain why each one is a good fit.
+The export contains selected posting fields only. It excludes raw WaterlooWorks responses, session/action tokens, cookies, browser storage, application state, personal posting tags such as \`Viewed\`, and WaterlooWorks service-team contact details. Email addresses found in posting text are replaced with \`[redacted-email]\`.
 
-The exporter also creates `waterlooworks_jobs.csv` if you want to view the jobs in Excel or another spreadsheet app.
+Export files stay on your computer unless you choose to share them. If you upload an export or resume to an LLM, that service's privacy practices apply. See [SECURITY.md](SECURITY.md) for details.
 
-## Using It Again
+## Troubleshooting
 
-1. Open **Terminal**.
-2. Copy and paste the same command below, then press **Return**:
+- **\`py\` or \`python3\` is not recognized:** Install Python, reopen PowerShell or Terminal, and try again.
+- **The exporter cannot find \`run.py\`:** Extract the ZIP inside Downloads and leave the project folder there.
+- **No jobs are found:** Confirm that the filtered results are loaded in **Table Mode** before pressing Enter or Return.
+- **Setup or browser installation fails:** Keep the terminal open and check your internet connection, then run the command again.
 
-```bash
-python3 -c 'from pathlib import Path; import runpy; p=max((x for x in (Path.home()/"Downloads").rglob("run.py") if "waterlooworks-job-exporter" in str(x)), key=lambda x:x.stat().st_mtime); runpy.run_path(str(p), run_name="__main__")'
-```
-
-3. Choose your WaterlooWorks jobs the same way as before, then go back to Terminal and press **Return** to export them.
-
----
-
-# Privacy
-
-The exporter does not save your WaterlooWorks password, Waterloo account email, cookies, browser session, application state, or `Viewed` status.
-
-Email addresses found inside job postings are replaced with `[redacted-email]`.
-
-See [SECURITY.md](SECURITY.md) for more details.
-
-# Troubleshooting
-
-**`py` or `python3` is not recognized:** Install Python using the link above, reopen PowerShell or Terminal, and try again.
-
-**The exporter does not start on Windows:** Make sure the ZIP was extracted somewhere inside your **Downloads** folder, then copy and paste the Windows command again.
-
-**The exporter cannot find the jobs:** Make sure the WaterlooWorks results are showing in **Table Mode** before pressing Enter/Return.
+If WaterlooWorks changes its page structure or responses, the exporter may need an update.
