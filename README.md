@@ -65,7 +65,3 @@ Export files stay on your computer unless you choose to share them. If you uploa
 - **Setup or browser installation fails:** Keep the terminal open and check your internet connection, then run the command again.
 
 If WaterlooWorks changes its page structure or responses, the exporter may need an update.
-
-## About the author
-
-Built by Afshal Fatima, a Computer Engineering student at the University of Waterloo. [LinkedIn](https://www.linkedin.com/in/afshal-fatima-309b361a9/) · [GitHub profile](https://github.com/Abble1)
