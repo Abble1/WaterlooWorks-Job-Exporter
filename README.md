@@ -68,4 +68,4 @@ If WaterlooWorks changes its page structure or responses, the exporter may need 
 
 ## About the author
 
-Built by Afshal Fatima, a Computer Engineering student at the University of Waterloo. [Portfolio](https://afshal-fatima.abloomlynx5.chatgpt.site) · [GitHub](https://github.com/Abble1) · [LinkedIn](https://www.linkedin.com/in/afshal-fatima-309b361a9/)
+Built by Afshal Fatima, a Computer Engineering student at the University of Waterloo. [LinkedIn](https://www.linkedin.com/in/afshal-fatima-309b361a9/) · [GitHub profile](https://github.com/Abble1)
